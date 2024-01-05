@@ -35,7 +35,7 @@ CREATE TABLE `like_res` (
   KEY `res_id` (`res_id`),
   CONSTRAINT `like_res_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `like_res_ibfk_2` FOREIGN KEY (`res_id`) REFERENCES `restaurants` (`res_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `orders` (
   `user_id` int DEFAULT NULL,
@@ -43,11 +43,13 @@ CREATE TABLE `orders` (
   `amount` int DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
   `arr_sub_id` varchar(255) DEFAULT NULL,
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`order_id`),
   KEY `user_id` (`user_id`),
   KEY `food_id` (`food_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `rate_res` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -60,7 +62,7 @@ CREATE TABLE `rate_res` (
   KEY `res_id` (`res_id`),
   CONSTRAINT `rate_res_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `rate_res_ibfk_2` FOREIGN KEY (`res_id`) REFERENCES `restaurants` (`res_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `restaurants` (
   `res_id` int NOT NULL AUTO_INCREMENT,
@@ -146,31 +148,33 @@ INSERT INTO `like_res` (`id`, `user_id`, `res_id`, `date_like`) VALUES
 (21, 1, 5, '2023-01-16 23:00:00'),
 (22, 3, 2, '2023-01-17 09:30:00'),
 (23, 2, 8, '2023-01-18 11:45:00'),
-(24, 4, 4, '2023-01-19 14:00:00');
+(24, 4, 4, '2023-01-19 14:00:00'),
+(26, 10, 8, '2024-01-05 13:26:50');
 
-INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
-(1, 1, 2, 'ORDER123', '1,2');
-INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
-(2, 5, 1, 'ORDER456', '5');
-INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
-(3, 9, 3, 'ORDER789', '9,10,11');
-INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
-(4, 14, 2, 'ORDERABC', '14,15'),
-(5, 3, 1, 'ORDERDEF', '3'),
-(1, 6, 2, 'ORDERGHI', '6,7'),
-(2, 12, 1, 'ORDERJKL', '12'),
-(3, 4, 3, 'ORDERMNO', '4,5,8'),
-(4, 10, 2, 'ORDERPQR', '10,11'),
-(5, 2, 1, 'ORDERSTU', '2'),
-(1, 8, 2, 'ORDERVWX', '8,9'),
-(2, 11, 1, 'ORDERYZA', '11'),
-(3, 13, 3, 'ORDERBCD', '13,14,15'),
-(4, 6, 2, 'ORDEREFG', '6,7'),
-(5, 7, 1, 'ORDERHIJ', '7'),
-(1, 10, 2, 'ORDERKLM', '10,11'),
-(2, 14, 1, 'ORDERNOP', '14'),
-(3, 15, 3, 'ORDERQRS', '15,10,11'),
-(4, 3, 2, 'ORDERTUV', '3,4');
+INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`, `order_id`) VALUES
+(1, 1, 2, 'ORDER123', '1,2', 1);
+INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`, `order_id`) VALUES
+(2, 5, 1, 'ORDER456', '5', 2);
+INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`, `order_id`) VALUES
+(3, 9, 3, 'ORDER789', '9,10,11', 3);
+INSERT INTO `orders` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`, `order_id`) VALUES
+(4, 14, 2, 'ORDERABC', '14,15', 4),
+(5, 3, 1, 'ORDERDEF', '3', 5),
+(1, 6, 2, 'ORDERGHI', '6,7', 6),
+(2, 12, 1, 'ORDERJKL', '12', 7),
+(3, 4, 3, 'ORDERMNO', '4,5,8', 8),
+(4, 10, 2, 'ORDERPQR', '10,11', 9),
+(5, 2, 1, 'ORDERSTU', '2', 10),
+(1, 8, 2, 'ORDERVWX', '8,9', 11),
+(2, 11, 1, 'ORDERYZA', '11', 12),
+(3, 13, 3, 'ORDERBCD', '13,14,15', 13),
+(4, 6, 2, 'ORDEREFG', '6,7', 14),
+(5, 7, 1, 'ORDERHIJ', '7', 15),
+(1, 10, 2, 'ORDERKLM', '10,11', 16),
+(2, 14, 1, 'ORDERNOP', '14', 17),
+(3, 15, 3, 'ORDERQRS', '15,10,11', 18),
+(4, 3, 2, 'ORDERTUV', '3,4', 19),
+(10, 3, 5, 'shjkjklfh', '1,2,3,4', 20);
 
 INSERT INTO `rate_res` (`id`, `user_id`, `res_id`, `amount`, `date_rate`) VALUES
 (1, 1, 2, 4, '2023-01-01 12:30:00');
@@ -182,7 +186,10 @@ INSERT INTO `rate_res` (`id`, `user_id`, `res_id`, `amount`, `date_rate`) VALUES
 (4, 4, 3, 4, '2023-01-04 21:10:00'),
 (5, 5, 6, 5, '2023-01-05 14:00:00'),
 (6, 6, 8, 4, '2023-01-06 17:30:00'),
-(7, 7, 5, 3, '2023-01-07 20:15:00');
+(7, 7, 5, 3, '2023-01-07 20:15:00'),
+(8, 10, 8, 5, NULL),
+(9, 10, 8, 5, '2024-01-05 13:28:31'),
+(10, 10, 8, 5, '2024-01-05 14:10:07');
 
 INSERT INTO `restaurants` (`res_id`, `res_name`, `image`, `description`) VALUES
 (1, 'Restaurant A', 'restaurant_a.jpg', 'A cozy place with a diverse menu.');
